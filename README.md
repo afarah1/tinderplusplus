@@ -1,27 +1,33 @@
 Tinder++
 ========
 
-It's a node-webkit (now nw.js) app.
+Forked from https://github.com/mfkp/tinderplusplus
 
-You'll need to run `npm install` in both the main directory, and inside of desktop-app before starting.
+####Install and run####
 
-To compile your changes and test:
+I don't know anything about nodejs, this is what I did to get it workin on
+Debian...
 
-First, download node-webkit (currently using [v0.11.6](https://github.com/nwjs/nw.js/wiki/Downloads-of-old-versions#v0116-jan-21-2015))
-
-To start the app:
-
-```
+````
+apt-get install npm libgconf2-4 libconf-2-4
+cd /path/to/install/dir
+git clone this-repo
+cd this-repo
+npm install
+npm install isarray
+npm install core-util-is
+npm install inflight
+npm install compress-commons
+npm install bl
+npm install xtend
+npm install end-of-stream
 cd desktop-app
-/path/to/your/nwjs .
+npm install
+cd ..
+nodejs .
+cd build/Tinder⁺⁺/linux64
+./Tinder⁺⁺
 ```
-
-Note: if you don't have Wine installed and want to run the build script (`node build.js`), just delete the `winIco` field from build.js
-
-#### Contributors ####
-
-- [@tomlandia](https://github.com/tomlandia) ([http://thomasschneider.com/](http://thomasschneider.com/))
-- [@wbyoko](https://github.com/wbyoko) ([http://wbyoko.co/](http://wbyoko.co/))
 
 ### ISC License ###
 

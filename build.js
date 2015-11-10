@@ -7,12 +7,10 @@ var appName = 'Tinder⁺⁺';
 
 var nw = new NwBuilder({
   files: 'desktop-app/**',
-  platforms: ['osx32', 'win32'],
+  platforms: ['osx32', 'win32', 'linux'],
   version: '0.11.6',
   appName: appName,
   appVersion: appPkg.version,
-  winIco: 'icons/win.ico',
-  macIcns: 'icons/mac.icns',
   buildType: 'default',
   mergeZip: false
 });
@@ -22,7 +20,6 @@ nw.on('log', console.log);
 nw.build()
   .then(function () {
     console.log('done building apps');
-    createDMG();
     createNW();
   })
   .catch(function (error) {
@@ -47,42 +44,3 @@ function createNW() {
   ]);
   archive.finalize();
 }
-
-
-// create the mac DMG installer
-function createDMG() {
-  console.log('creating mac dmg...');
-  var appdmg = require('appdmg');
-  var ee = appdmg({
-    source: './dmg.json',
-    target: './build/' + appName + '/Tinder++.dmg'
-  });
-   
-  ee.on('progress', function (info) {
-   
-    // info.current is the current step 
-    // info.total is the total number of steps 
-    // info.type is on of 'step-begin', 'step-end' 
-   
-    // 'step-begin' 
-    // info.title is the title of the current step 
-   
-    // 'step-end' 
-    // info.status is one of 'ok', 'skip', 'fail' 
-    console.log('DMG step ' + info.current + '/' + info.total);
-   
-  });
-   
-  ee.on('finish', function () {
-    console.log('mac dmg created');
-  });
-   
-  ee.on('error', function (err) {
-    console.log(err);
-  });
-}
-
-
-// WINDOWS
-// Inno Setup Compiler
-// Enigma Virtual Box
